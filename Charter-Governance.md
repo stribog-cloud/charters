@@ -6,7 +6,7 @@ type: stribog/charter-governance
 status: governing-reference
 tags: [borg-backup, charter, governance, runbook, stribog]
 version: "1.3.0"
-revision: 10
+revision: 11
 last_updated: 2026-05-12
 parent_moc: "[[MOC - Stribog Governance]]"
 owners: [stribog-team]
@@ -110,11 +110,7 @@ Working documents are advisory. They record decisions but do not bind.
 
 ### 3.1 Canonical Working Source
 
-The canonical working source for the charter set is the Stribog BrainForest charter directory. As of this revision:
-
-```
-~/Documents/BrainForest/10 - Work/Stribog - Common/charters/
-```
+The canonical working source for the charter set is a directory in the Stribog BrainForest vault. Its exact local-filesystem location is operator-specific and not declared in the public distribution. The Charter Owner maintains the canonical working source; all other locations (including this public distribution) are derived projections.
 
 This is the single authoritative location for in-progress charter work. Edits to charter documents happen here, not in derived copies.
 
@@ -128,7 +124,7 @@ The Compliance Annex of any project that cannot reach BrainForest names the prom
 
 Promotion is one-way. The Git repository is a derived projection of the BrainForest source, not an independent copy. Edits made to the Git repository directly are not authoritative; they must be backported to BrainForest or treated as waiver-tracked deviations.
 
-### 3.4 Vault-Side Diagram Source
+### 3.4 Working-Source-Side Diagram Source
 
 For BrainForest-resident charter documents, the embedded `d2` blocks inside the Markdown documents are explicitly the canonical diagram source. This is declared in the documents themselves. The Stribog Documentation Standard §7.2 governs the broader rule.
 

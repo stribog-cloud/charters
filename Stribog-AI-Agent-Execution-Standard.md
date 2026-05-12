@@ -6,7 +6,7 @@ type: stribog/agent-execution-standard
 status: governing-reference
 tags: [anthropic, charter, governance, local-ai, openai, stribog]
 version: "1.1.0"
-revision: 8
+revision: 9
 last_updated: 2026-05-12
 parent_moc: "[[MOC - Stribog Governance]]"
 owners: [stribog-team]
@@ -206,7 +206,7 @@ The convention is intentionally provider-neutral so the same form works across m
 |-----------------|-----------------|
 | Anthropic Claude (Claude Code, Claude API, claude.ai) | `Co-authored-by: Claude <noreply@anthropic.com>` |
 | OpenAI Codex / GPT-class agents | `Co-authored-by: Codex <noreply@openai.com>` |
-| GitHub Copilot agent mode | `Co-authored-by: Copilot <copilot@github.com>` |
+| GitHub Copilot agent mode | `Co-authored-by: Copilot <copilot-bot-id@github.invalid>` |
 | Google Gemini agent | `Co-authored-by: Gemini <noreply@google.com>` |
 | Local / self-hosted model (declared in the Annex) | `Co-authored-by: <model-id> <noreply@<host-org>>` |
 | Cross-vendor harness or unknown provider | `Co-authored-by: AI Agent <noreply@stribog.invalid>` |

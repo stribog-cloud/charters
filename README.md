@@ -7,7 +7,7 @@ status: governing-reference
 tags: [charter, governance, rag, runbook, stribog]
 project: Stribog - Common
 version: "1.2.0"
-revision: 10
+revision: 11
 last_updated: 2026-05-12
 parent_moc: "[[MOC - Stribog Governance]]"
 owners: [stribog-team]
@@ -104,7 +104,7 @@ Projects pin to specific `MAJOR.MINOR` versions. They do not float against `late
 
 Per Charter Governance §3:
 
-- **Canonical working source:** this BrainForest directory (`~/Documents/BrainForest/10 - Work/Stribog - Common/charters/`). All in-progress charter work happens here.
+- **Canonical working source:** a directory in the Charter Owner's BrainForest vault. The exact local-filesystem location is operator-specific and not part of this public distribution. All in-progress charter work happens there; this public repository is a derived projection.
 - **Promoted distribution source:** a Stribog-controlled Git repository under `github.com/stribog-cloud/`, named in the Compliance Annex of any project that cannot reach BrainForest. The Git repository is a one-way derived projection of this BrainForest source. Establishment of this repository is tracked under R2 audit finding F19.
 - **Diagram source:** for documents in this BrainForest location, embedded `d2` blocks are the canonical diagram source. Each document declares this explicitly.
 

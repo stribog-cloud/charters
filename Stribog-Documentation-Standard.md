@@ -6,7 +6,7 @@ type: stribog/documentation-standard
 status: governing-reference
 tags: [anthropic, charter, governance, rag, runbook, stribog]
 version: "2.1.0"
-revision: 8
+revision: 9
 last_updated: 2026-05-12
 parent_moc: "[[MOC - Stribog Governance]]"
 owners: [stribog-team]
@@ -569,7 +569,7 @@ Diagram source files are version-controlled. "The rendered PNG exists somewhere"
 
 If a document embeds D2 directly for readability, the repository still maintains a canonical `.d2` source file for that diagram when the diagram is part of a long-lived governing or reference document. The embedded block is not the canonical artifact unless the document explicitly says so.
 
-For BrainForest-resident charter and standards documents, the embedded `d2` blocks are explicitly treated as the canonical vault-side source. That declaration is part of the document.
+For BrainForest-resident charter and standards documents, the embedded `d2` blocks are explicitly treated as the canonical working-source-side source. That declaration is part of the document.
 
 ### 7.3 Rendered Artifacts
 

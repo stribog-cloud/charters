@@ -6,7 +6,7 @@ type: stribog/glossary
 status: governing-reference
 tags: [borg-backup, charter, governance, kubevigil, rag, runbook, security, stribog]
 version: "1.3.0"
-revision: 5
+revision: 6
 last_updated: 2026-05-12
 parent_moc: "[[MOC - Stribog Governance]]"
 owners: [stribog-team]
@@ -73,7 +73,7 @@ This glossary is binding: where another governing document is ambiguous, this gl
 
 **Distinct from.** Architecture supplements (which deepen specific subsystems) and build plans (which sequence the implementation).
 
-**Reference example.** [[Email RAG System Reference]] (`~/Documents/BrainForest/30 - HomeLab/Email RAG System Reference.md`) is the canonical Stribog house-style example for this document family.
+**Reference example.** The `templates/Master-Reference-Template.md` worked example serves as the canonical Stribog house-style example for this document family.
 
 ### Architecture Decision Record (ADR)
 
