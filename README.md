@@ -36,7 +36,7 @@ These eleven documents are binding. Each has its own §0.2 applicability clause.
 
 | Document | Current Version | Applicability | Read order |
 |----------|-----------------|---------------|------------|
-| [[Universal-Stribog-Engineering-Charter]] | `1.2.0` (rev 8) | Universal — every Stribog project | 1 |
+| [[Universal-Stribog-Engineering-Charter]] | `1.3.0` (rev 1) | Universal — every Stribog project | 1 |
 | [[Stribog-Documentation-Standard]] | `2.1.0` (rev 6) | Universal — every Stribog document of governing/reference/plan/audit/runbook grade | 2 |
 | [[Stribog-AI-Agent-Execution-Standard]] | `1.1.0` (rev 5) | Universal — every Stribog project that accepts AI-assisted contribution | 3 |
 | [[Stribog-Operational-Delivery-Standard]] | `1.1.0` (rev 4) | Projects with managed-service, infrastructure, or rolling-deployment scope | 4 |
@@ -45,10 +45,10 @@ These eleven documents are binding. Each has its own §0.2 applicability clause.
 | [[Stribog-User-Documentation-Standard]] | `1.0.0` (rev 1) | Projects meeting its §0.2 criteria (any project shipping a human-operable surface — UI, CLI for non-engineers, API for integrators, managed service) | 7 |
 | [[Stribog-Developer-Documentation-Standard]] | `1.0.0` (rev 1) | Projects meeting its §0.2 criteria (any project exposing a developer-callable surface — public API, SDK, plugin seam, contributor-facing codebase) | 8 |
 | [[Stribog-UI-UX-Standard]] | `1.1.0` (rev 2) | Projects meeting its §0.2 criteria (any project shipping a user interface — web, mobile, desktop, dashboard, TUI, embedded) | 9 |
-| [[Stribog-Glossary]] | `1.3.0` (rev 4) | Universal — authoritative for cross-document term meaning | 10 |
-| [[Charter-Governance]] | `1.3.0` (rev 6) | Universal — governs the charter set itself | 11 |
+| [[Stribog-Glossary]] | `1.4.0` (rev 1) | Universal — authoritative for cross-document term meaning | 10 |
+| [[Charter-Governance]] | `1.4.0` (rev 1) | Universal — governs the charter set itself | 11 |
 
-The Engineering Charter §0.5 defines three **compliance tiers** (Foundation, Working, Reference) that graduate the discipline applied based on project risk while keeping the universal canon binding on every Stribog project. Every project declares its tier in its Charter Compliance Annex.
+The Engineering Charter §0.6 defines three **compliance tiers** (Foundation, Working, Reference) that graduate the discipline applied based on project risk while keeping the universal canon binding on every Stribog project. Every project declares its tier in its Charter Compliance Annex.
 
 ### 1.2 Templates
 

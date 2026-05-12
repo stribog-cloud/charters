@@ -5,8 +5,8 @@ updated: 2026-05-12
 type: stribog/glossary
 status: governing-reference
 tags: [borg-backup, charter, governance, kubevigil, rag, runbook, security, stribog]
-version: "1.3.0"
-revision: 6
+version: "1.4.0"
+revision: 1
 last_updated: 2026-05-12
 parent_moc: "[[MOC - Stribog Governance]]"
 owners: [stribog-team]
@@ -619,11 +619,43 @@ Terms used across the User Documentation Standard, Developer Documentation Stand
 
 **Definition.** The classification of a Stribog project that determines the form in which the charter applies. Three tiers: **Foundation** (universal — every Stribog project), **Working** (small tools, internal automations, exploratory utilities not yet customer-facing or production-stateful — Foundation with two relaxations: condensed master reference and optional phased build plan), **Reference** (customer-facing, production-stateful, public, or security-sensitive — Foundation in full plus mandatory §2.1 artifact set, applicable security/privacy standards, and audit closeouts at every phase boundary).
 
-**Canonical source.** Engineering Charter §0.5.
+**Canonical source.** Engineering Charter §0.6.
 
 **Distinct from.** *Service Tier* (operational classification, governs monitoring/RPO/RTO; defined in Operational Delivery Standard §10.1) and *Model Tier* (AI capability classification; defined in AI Agent Execution Standard §7). The three tier vocabularies are independent: a project at Compliance Tier `Reference` may run a service at Service Tier `Standard` and call a model at Model Tier `Synthesis`. The terms share the word *tier*; they share nothing else.
 
 **Distinct from.** A *reference document* (a document family — master references, architecture supplements — defined in Documentation Standard §2.2). The Compliance Tier name `Reference` and the document family `reference` are different concepts that happen to share an English word; do not conflate.
+
+### Project Profile
+
+**Definition.** The classification of a Stribog project by its shape — how it is delivered and consumed — independent of its maturity. Four profiles are recognized: *local-only application*, *public library / package*, *hosted service*, and *regulated / high-risk decision-support tool*. Each profile carries a defined standards-binding posture. Profile is orthogonal to Compliance Tier: any tier may carry any profile, and a project may belong to more than one profile simultaneously.
+
+**Canonical source.** Engineering Charter §0.4.
+
+**Distinct from.** *Compliance Tier* (Engineering Charter §0.6) — tier governs the maturity and completeness of engineering discipline required; profile governs which standards bind based on delivery shape.
+
+### Public Release Profile
+
+**Definition.** The per-project declaration — recorded in the Compliance Annex — that names the two sets of a public derived projection: the **included** set (files, directories, sections, or generated artifacts that are part of the public projection) and the **excluded** set (internal operational artifacts, audit-round records, draft scratch, vault-local diagrams, confidential annexes, or any material not part of the projection). Two binding rules govern the declaration: no included artifact may reference an excluded artifact, and gates that bind a project must apply to the included set.
+
+**Canonical source.** Charter Governance §3.6.
+
+**Distinct from.** *Project Profile* (Engineering Charter §0.4) — the project profile classifies delivery shape; the public release profile classifies which artifacts are visible in the public projection of a specific project.
+
+### Release Evidence
+
+**Definition.** The record produced at release time that proves a release was built reproducibly, passed integrity checks, and satisfies the declared size budget and smoke tests. Captures: the build command and observed artifact hash, SBOM and signature pointers, smoke test outcomes, size budget compliance, the source/artifact boundary, and a provenance trailer naming who built it, what tooling was used, and when.
+
+**Canonical source.** Engineering Charter §7.4.
+
+**Distinct from.** *Audit Closeout* (§1 of this glossary) — an audit closeout covers a phase or milestone; release evidence covers a single artifact release.
+
+### Project Applicability Matrix
+
+**Definition.** A table-based artifact that maps each Stribog governing standard against a declaration of `bound`, `not applicable`, or `waivered` for a specific project, with a rationale slot for each row. The matrix is derived from the project's declared profile (Engineering Charter §0.4) and compliance tier (Engineering Charter §0.6), and is filed as part of or alongside the Charter Compliance Annex.
+
+**Canonical source.** `templates/Project-Applicability-Matrix-Template.md`.
+
+**Distinct from.** The *Charter Compliance Annex §0 Charter Pins table* — the Annex table pins specific document versions; the applicability matrix records which standards bind and why, at a higher level of abstraction suitable for auditors and stakeholders.
 
 ## 8. Reading This Glossary
 
@@ -640,6 +672,7 @@ When a term used in a Stribog document is not defined here, raise it as a findin
 | 1.0.0 | 1 | 2026-05-03 | Initial governing-reference release. Defined cross-document terms across Process and Evidence, Versioning and Status, Engineering Discipline, Operational, AI Agent, and Governance categories. |
 | 1.1.0 | 2 | 2026-05-03 | MINOR bump applied during Charter Set Audit Round 3. Added **Compliance Tier** term to §6 Governance Terms, with explicit disambiguation against *Service Tier* (operational), *Model Tier* (AI), and the *reference document* family. Closes a terminology gap identified in Round 3 self-critique: the canon used "Reference" for both a Compliance Tier and a document family, and the Glossary previously did not authoritatively distinguish them. Added this §8 Revision History section. |
 | 1.2.0 | 3 | 2026-05-12 | MINOR bump applied during Charter Set Audit Round 6 closeout. New §6 *User-Facing Surface Terms* inserted between §5 AI Agent Terms and the prior §6 Governance Terms (now renumbered §7), with the Reading section renumbered §8 and Revision History renumbered §9. The new §6 group adds twenty-three cross-document terms required by the three new standards: Diátaxis Quadrant, Audience Tier, User-Facing Release Note, In-Product Help, Microcopy, Voice Charter, Support Escalation Map, Doc-to-Release Sync, Public Surface, Generated Reference, Drift Gate, Code Sample, Deprecation Notice, Compatibility Window, Design Token, Component State Contract, WCAG 2.2 AA, ARIA, Focus Trap, Reduced-Motion Preference, Performance Budget, Consent-First Telemetry, Design Review Gate. Each term names the canonical source standard. Closes Round 6 finding F62 follow-up: the three new standards introduced cross-document vocabulary that needed an authoritative single-source definition before they could bind. No prior term meaning changed; this is purely additive. |
+| 1.4.0 | 1 | 2026-05-12 | MINOR bump. Four new terms added to §7 Governance Terms: **Project Profile** (Engineering Charter §0.4), **Public Release Profile** (Charter Governance §3.6), **Release Evidence** (Engineering Charter §7.4), and **Project Applicability Matrix** (`templates/Project-Applicability-Matrix-Template.md`). Each entry follows the standard format (Definition, Canonical source, Distinct from). Prompted by external feedback on profile/tier distinction and the introduction of the Profile and Public Release Profile normative sections. |
 | 1.3.0 | 4 | 2026-05-12 | MINOR bump applied during Charter Set Audit Round 7 closeout. §6 *User-Facing Surface Terms* extended with thirty additional cross-document terms required by the [[Stribog UI/UX Standard]] v1.1.0 expansion: Information Architecture, Deep-Link, Scroll Restoration, Validation Timing, Dirty State, IME Composition, Live Region, Idle Timeout, Optimistic UI, Skeleton, Stale-While-Revalidate, Write Queue, Conflict Resolution, Presence Indicator, Streaming UI, Generative UI, Modality, Drop Target, Forced-Colors Mode, Token Layer (Primitive / Semantic / Component), Perceptual Color Space, Baseline Grid, Easing Curve, Micro-Interaction, Haptic Feedback, Frame Budget, Hover-Intent, SSR / Hydration Posture, Theme Parity, Polish Pass. Closes Round 7 finding F73 (vocabulary drift behind UI/UX v1.1.0 expansion). No prior term meaning changed; this is additive. The §6 group now holds fifty-three cross-document terms covering the user-facing-surface canon. |
 
 ---

@@ -5,8 +5,8 @@ updated: 2026-05-12
 type: stribog/engineering-charter
 status: governing-reference
 tags: [anthropic, charter, docker, governance, k8s, obsidian, stribog]
-version: "1.2.0"
-revision: 13
+version: "1.3.0"
+revision: 1
 last_updated: 2026-05-12
 parent_moc: "[[MOC - Stribog Governance]]"
 owners: [stribog-team]
@@ -85,7 +85,24 @@ Disposable spikes, throwaway scratch work, and one-off scripts that satisfy none
 
 The promotion rule is absolute: a spike that survives is a Stribog project, and the moment it survives, it is bound by this charter retroactively from that point forward.
 
-## 0.4 Governance Stack
+## 0.4 Project Profile
+
+Profile classifies a project by shape, not by maturity. Tier (§0.6) and Profile (this section) are orthogonal — a Foundation-tier project may be any profile; a Working-tier project likewise. The Charter Compliance Annex declares both.
+
+Four profiles are recognized:
+
+| Profile | Definition | Standards binding posture |
+|---|---|---|
+| **Local-only application** | Runs on the end-user's device. No hosted backend operated by Stribog. Data residency is the user's device. | Engineering Charter, Documentation Standard, AI Agent Execution (where AI-assisted), Security Posture (client-side surface), Data and Privacy (on-device data only). Operational Delivery does not bind. UI/UX binds if the project has a user interface. |
+| **Public library / package** | Code published for third-party consumption (Go module, Python package, npm package, container image, etc.). | Engineering Charter, Documentation Standard, Developer Documentation Standard, AI Agent Execution. Public Surface Map and drift gate are non-optional. Operational Delivery does not bind unless Stribog also runs a hosted reference instance. |
+| **Hosted service** | Operator-run service consumed by clients or end-users over a network. | All standards bind by default. Operational Delivery, Security Posture, and Data and Privacy carry their full applicability. |
+| **Regulated / high-risk decision-support tool** | A project whose outputs materially affect regulated, safety-critical, financial, medical, legal, or policy decisions. | Strictest binding. Engineering Charter, Documentation Standard, AI Agent Execution, Operational Delivery, Security Posture, Data and Privacy all bind in full. Audit-grade evidence and waiver discipline are non-optional. The Annex names the specific regulatory regime(s) the project answers to. |
+
+The profile is declared in the Compliance Annex §0. A project may belong to more than one profile (e.g. a library that also has a hosted reference instance); each profile's binding posture applies in addition.
+
+If a project does not fit any named profile, the Annex names the closest profile and the deviation rationale; a deviation that recurs across multiple projects is a candidate for a new profile in a future Engineering Charter revision.
+
+## 0.5 Governance Stack
 
 > Diagrams are written in `D2`. Use the D2 Obsidian plugin to render them inline; without it Obsidian shows the D2 source directly. For this BrainForest location, the embedded `d2` block is the canonical diagram source artifact.
 
@@ -212,7 +229,7 @@ The full canon of Stribog governing documents is:
 
 A Stribog project must declare which version of this charter it is bound by, in its Charter Compliance Annex. Projects do not float against the latest charter; they pin to a version.
 
-## 0.5 Compliance Tiers
+## 0.6 Compliance Tiers
 
 Not every Stribog project carries the same operational risk. The charter applies to all of them, but the form in which it applies is graduated through three compliance tiers. Every Stribog project declares its tier in the Charter Compliance Annex.
 
@@ -226,7 +243,7 @@ The Working tier is not a permanent home. A project that becomes customer-facing
 
 The Working tier is not a workaround for §0.3. A project that satisfies any of the §0.3 promotion criteria is a Stribog project at Foundation tier minimum, and is bound by this charter. The Working tier is a recognition that the full Reference-tier artifact set is excessive overhead for projects that have not yet earned it; it is not a path to compliance avoidance.
 
-## 0.6 What This Charter Does Not Govern
+## 0.7 What This Charter Does Not Govern
 
 The negative space matters. This charter explicitly does not govern:
 
@@ -952,6 +969,7 @@ This list is not exhaustive. It is illustrative of the failure modes this charte
 | 1.1.0 | 5 | 2026-05-03 | Editorial revision applied during Charter Set Audit Round 3 closeout. §0.4 governance-stack D2 diagram updated to include the three nodes added by the v1.1.0 canon expansion (`security`, `privacy`, `glossary`) with edges `security -> project.supplements` (threat model · SARs), `privacy -> project.supplements` (classification · lifecycle), `glossary -> project.reference` (authoritative term meaning). Closes Round 3 finding F32 (stale governance-stack diagram). No normative change. The earlier rev 2 MINOR bump that added the three governing documents to §0.4's prose did not update the §0.4 diagram, leaving the diagram in canon drift for two revisions; this revision closes that drift. |
 | 1.2.0 | 6 | 2026-05-12 | MINOR bump applied during Charter Set Audit Round 6 closeout. §14 Companion Documents extended to list the three new governing documents added under Round 6: [[Stribog User Documentation Standard]], [[Stribog Developer Documentation Standard]], and [[Stribog UI/UX Standard]], each binding per its own §0.2 applicability. §3.3 Thin Interface Layers extended with a closing paragraph naming the surface-specific binding standards for UI, developer-callable, and user-operable surfaces. §5.9 Quality Gate Set extended with a paragraph naming the surface-specific gates the three new standards add (developer-reference drift gate, visual-regression and automated-accessibility gates, frontend performance-budget gate, doc-to-release sync gate). Closes Round 6 finding F62. No clause was weakened; the three new standards bind only projects within their applicability and the gates they introduce apply only to those projects. |
 | 1.2.0 | 7 | 2026-05-12 | PATCH revision applied during Charter Set Audit Round 7 closeout. §5.9 Quality Gate Set surface-specific-gates paragraph updated to reflect the [[Stribog UI/UX Standard]] v1.1.0 expansion: UI/UX gate references advanced from §9 (visual regression / automated a11y) and §10 (performance budget) to §24 (now also covering offline acceptance, real-time conflict, streaming a11y, cross-browser fidelity, polish pass, manual design QA) and §25 (now also covering per-class latency budgets and scroll-and-frame-rate); added the token-drift / cross-layer-reach gate at §2.3 and the contrast-verification gate at §2.9.4. No clause was weakened; the cited section numbers were stale, and the new gates were already binding under the UI/UX Standard's own clauses. Closes Round 7 finding F75 (Engineering Charter §5.9 cross-reference drift after UI/UX renumbering). |
+| 1.3.0 | 1 | 2026-05-12 | MINOR bump. Added new §0.4 *Project Profile* — four named profiles (local-only application, public library / package, hosted service, regulated / high-risk decision-support tool) each with a defined standards-binding posture. Profile is orthogonal to Compliance Tier (§0.6): any tier may be any profile. Profile is declared in the Compliance Annex. The prior §0.4 Governance Stack and §0.5 Compliance Tiers and §0.6 What This Charter Does Not Govern are renumbered §0.5, §0.6, and §0.7 respectively. No clause was weakened; no previously-compliant project becomes non-compliant. Prompted by external feedback on the profile/tier distinction. |
 | 1.2.0 | 8 | 2026-05-12 | PATCH revision applied during Charter Set Audit Round 9 closeout. Two clarifications and one attribution refresh, all additive: (a) §5.5 *Coverage Measurement Boundary* extended with a closing paragraph addressing single-file and self-contained distributables — single-file HTML SPA, single-binary CLI, single `.wasm` module, bookmarklet, self-contained notebook export — making explicit that the *source* carries coverage / format / lint / static-analysis gates while the *generated artifact* carries §7.4 reproducibility, integrity, size, and smoke-test gates. The principle (exclude generated from coverage) was already in §5.5; the clarification names the edge case where the artifact and the product are the same object. (b) §7.4 *Release Discipline* extended with a single-file-distributable release contract — reproducible build, integrity reference, declared size budget, smoke test in the shipped form, source/artifact boundary named in the Annex. (c) §7.7 *Git Identity and AI Attribution* clarified to a provider-neutral trailer shape with the detailed concrete examples per agent harness routed to the [[Stribog AI Agent Execution Standard]] §5. Closes Round 9 findings F80 (Claude-specific attribution example) and F81 (single-file distributable artifact treatment under-specified). No clause was weakened; no previously-compliant project becomes non-compliant under v1.2.0 rev 8. |
 
 ---

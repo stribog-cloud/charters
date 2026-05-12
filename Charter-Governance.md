@@ -5,8 +5,8 @@ updated: 2026-05-12
 type: stribog/charter-governance
 status: governing-reference
 tags: [borg-backup, charter, governance, runbook, stribog]
-version: "1.3.0"
-revision: 11
+version: "1.4.0"
+revision: 1
 last_updated: 2026-05-12
 parent_moc: "[[MOC - Stribog Governance]]"
 owners: [stribog-team]
@@ -133,6 +133,24 @@ When the charter set is promoted to the Git repository, rendered SVG and PNG art
 ### 3.5 Backups
 
 The charter set is backed up under the same backup posture as the rest of BrainForest. A charter set that exists only on a single disk is a fragile control system.
+
+### 3.6 Public Release Profile
+
+Every Stribog project that maintains a public derived projection (a one-way mirror to a public Git repository, a published documentation site, a public artifact registry, etc.) declares a **public release profile** in its Compliance Annex.
+
+The public release profile names two sets:
+- **Included** — files, directories, sections, or generated artifacts that ARE part of the public derived projection.
+- **Excluded** — files and directories that are NOT part of the public derived projection (typically: internal operational artifacts, audit-round records, draft scratch, vault-local diagrams, confidential annexes).
+
+Two binding rules follow:
+
+1. **No clause may reference an excluded artifact from an included artifact.** A governing clause that requires reading or citing a file outside the public release profile breaks the public projection. If such a reference is necessary, the referenced material moves into the included set, or the citing clause is reframed.
+
+2. **Gates that bind a project apply to the included set.** A gate may, in addition, apply to the canonical working source. It must not apply only to excluded artifacts — that breaks the audit trail in the public projection.
+
+The public release profile is declared once in the Annex and reviewed at every charter version bump. A change to the profile is itself a Compliance-Annex change governed by §6 of this document.
+
+For the Stribog Charter Set's own public release profile, see the `.gitignore` and `README.md` of the promoted distribution repository.
 
 ## 4. Charter Versioning Semantics
 
@@ -405,6 +423,7 @@ This list is not exhaustive. It is illustrative of the failure modes this govern
 | 1.2.0 | 4 | 2026-05-03 | MINOR bump applied during Charter Set Audit Round 5 closeout. §8.1 Scheduled Audits expanded from four opening triggers to five: added **fresh-reader observation** as a fifth trigger with the same authority as the four scheduled ones. R4 demonstrated the trigger's value (F53/F54/F55 caught by user observation immediately after R3 sign-off when the in-round reviewer had missed them); R5 confirmed it (F59/F60/F61 caught the same way after R4 sign-off). Closes Round 5 finding F56. No clause was weakened; this is an additive trigger that codifies a high-value observation pattern that had been operating informally. |
 | 1.3.0 | 5 | 2026-05-12 | MINOR bump applied during Charter Set Audit Round 6 closeout. §0 TL;DR Canon row updated from "eight governing documents" to "eleven governing documents" to match the post-R6 §2.1 row count. §2.1 Governing Documents extended from eight rows to eleven: added [[Stribog User Documentation Standard]], [[Stribog Developer Documentation Standard]], and [[Stribog UI/UX Standard]], each binding per its own §0.2 applicability. §2.1 closing paragraph updated to name the three new standards alongside Security Posture and Data and Privacy as applicability-bounded governing documents. Closes Round 6 finding F62 (user-facing documentation, developer-facing documentation, and UI/UX surfaces absent from the charter set) and Round 6 finding F63 (TL;DR canon-count drift, caught by self-audit before sign-off; same drift class as Round 3 F31 closure). The trigger for Round 6 was fresh-reader observation per §8.1, exercising the §8.1 bullet added in v1.2.0. No clause was weakened; the three new standards do not invalidate any prior compliant project — projects within their applicability declare their compliance posture at the next Charter Compliance Annex review per §6.1. |
 | 1.3.0 | 6 | 2026-05-12 | PATCH revision applied during Charter Set Audit Round 7 closeout. Revision history extended to record that Round 7 closed the [[Stribog UI/UX Standard]] v1.0.0 → v1.1.0 interaction-surfaces and polish-craft expansion. The trigger for Round 7 was the second exercise of the §8.1 fresh-reader observation trigger — same trigger that opened Round 6. No structural change to Charter Governance itself in Round 7; this revision records that R7 ran under the governance framework already in place at v1.3.0 (rev 5). |
+| 1.4.0 | 1 | 2026-05-12 | MINOR bump. Added §3.6 *Public Release Profile* — every project with a public derived projection declares included and excluded sets in its Compliance Annex; two binding rules enforce that no included artifact references an excluded artifact and that gates apply to the included set. Prompted by external feedback on profile/tier distinction and the need to make public-projection boundaries explicit. |
 | 1.3.0 | 7 | 2026-05-12 | PATCH revision applied during Charter Set Audit Round 9 closeout. Revision history extended to record that Round 8 closed operational-follow-through items (Annex reference-fill refresh + R2-backlog re-audit, no governing-document clause changes) and Round 9 closed three charter-clarification items: F79 (browser-only local-first project shape — Annex §C reference fill added), F80 (provider-neutral AI attribution — AI Agent Execution Standard §5.1 example expansion + Engineering Charter §7.7 cross-link refresh), F81 (single-file distributable artifact treatment — Engineering Charter §5.5 + §7.4 clarifications). R9 opened on the deferred-finding trigger of §8.1 (after R8) plus a fresh-reader observation that surfaced three concrete clarifications from cross-project experience. No structural change to Charter Governance itself in Rounds 8 or 9; this revision records the rounds ran under the governance framework already in place. |
 
 ---

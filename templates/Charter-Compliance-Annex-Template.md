@@ -6,8 +6,8 @@ type: project/charter-compliance-annex
 status: governing-reference
 tags: [anthropic, borg-backup, charter, claude-stack, governance, incident, k8s]
 project: <project-id>
-version: "1.2.0"
-revision: 11
+version: "1.3.0"
+revision: 1
 last_updated: 2026-05-12
 parent_moc: "[[MOC - Stribog Governance]]"
 ---
@@ -41,14 +41,19 @@ parent_moc: "[[MOC - Stribog Governance]]"
 | Stribog Developer Documentation Standard | Applies / N/A per its §0.2 — <one-line rationale, e.g. "project exposes a public HTTP API"> | <e.g. 1.0 or N/A> | <e.g. revision 1, 2026-05-12> |
 | Stribog UI/UX Standard | Applies / N/A per its §0.2 — <one-line rationale, e.g. "project ships a web UI"> | <e.g. 1.0 or N/A> | <e.g. revision 1, 2026-05-12> |
 | Stribog Glossary | Applies (cross-document terminology reference) | <e.g. 1.2> | <e.g. revision 3, 2026-05-12> |
-| Charter Governance | Applies (binds every Stribog project's compliance posture) | <e.g. 1.3> | <e.g. revision 5, 2026-05-12> |
+| Charter Governance | Applies (binds every Stribog project's compliance posture) | <e.g. 1.4> | <e.g. revision 1, 2026-05-12> |
+
+| Property | Value |
+|---|---|
+| Project profile (Charter §0.4) | `<local-only application \| public library / package \| hosted service \| regulated / high-risk decision-support tool>` |
+| Public release profile | `<see §A reference fill; or "N/A — no public derived projection">` |
 
 ## 0.1 Project Posture
 
 | Property | Value |
 |----------|-------|
 | Project type | <e.g. Go CLI tool / Python library / managed-service engagement / infrastructure-as-code / mixed> |
-| Compliance tier (Engineering Charter §0.5) | <Foundation / Working / Reference> |
+| Compliance tier (Engineering Charter §0.6) | <Foundation / Working / Reference> |
 | Tier rationale | <one-line: why this tier was chosen, especially when not Reference> |
 | Promotion criteria (if Working tier) | <conditions under which this project would be promoted to Reference tier> |
 | Primary language(s) | <e.g. Go 1.25+, Bash, YAML> |
@@ -551,7 +556,7 @@ Charter Governance: 1.3 (revision 6, 2026-05-12)
 
 # §0.1 — Project Posture
 Project type: Go CLI + MCP server, public OSS, security-relevant
-Compliance tier: Reference (public, security-sensitive — Engineering Charter §0.5)
+Compliance tier: Reference (public, security-sensitive — Engineering Charter §0.6)
 Tier rationale: public-facing security tool; customer trust depends on the canon applied in full
 Primary language: Go 1.25+
 Delivery model: tagged releases via GoReleaser
@@ -668,7 +673,7 @@ Charter Governance: 1.3 (revision 6, 2026-05-12)
 
 # §0.1 — Project Posture
 Project type: managed infrastructure for <customer>
-Compliance tier: Reference (customer-facing, production-stateful — Engineering Charter §0.5)
+Compliance tier: Reference (customer-facing, production-stateful — Engineering Charter §0.6)
 Tier rationale: customer engagement; production state under management; customer trust requires full canon
 Engagement type: INHERITED (Stribog assumed operational responsibility for an existing production fleet, not a greenfield build — Operational Delivery Standard §13.3)
 Primary languages: YAML, Bash, Ansible, Helm
@@ -828,7 +833,7 @@ Charter Governance: 1.3 (revision 6, 2026-05-12)
 
 # §0.1 — Project Posture
 Project type: SPA / PWA, browser-only, no hosted backend
-Compliance tier: Reference (handles Restricted user data — Engineering Charter §0.5)
+Compliance tier: Reference (handles Restricted user data — Engineering Charter §0.6)
 Tier rationale: client-only does not lower the bar; the absence of a server means the client IS the trust boundary
 Primary language: TypeScript
 Delivery model: tagged releases; single-file or single-bundle artifact served from a static host
@@ -984,6 +989,37 @@ W-0002: Stribog Data and Privacy Standard §11 Privacy Audit — third-party pri
 
 ---
 
+## §X. Public Release Profile
+
+*Complete this section if this project maintains a public derived projection (public Git repository mirror, published documentation site, public artifact registry, etc.). Governed by Charter Governance §3.6. If no public derived projection exists, record "N/A" with a one-line rationale and omit the included/excluded lists.*
+
+**Applies:** `<yes — public derived projection at <URL or path> | no — N/A: <one-line rationale>>`
+
+### Included set
+
+> Files, directories, sections, or generated artifacts that ARE part of the public derived projection.
+
+- `<path or glob — e.g. "*.md (all governing documents and templates)">`
+- `<path or glob>`
+- `<path or glob>`
+
+### Excluded set
+
+> Files and directories that are NOT part of the public derived projection.
+
+- `<path or glob — e.g. "audit-rounds/ (internal audit records)">`
+- `<path or glob — e.g. "*.vault.md (vault-local working copies)">`
+- `<path or glob — e.g. "scratch/ (draft working documents)">`
+
+### Cross-reference compliance attestation
+
+- [ ] No included artifact references an excluded artifact (Charter Governance §3.6, rule 1).
+- [ ] All gates that bind this project apply to the included set (Charter Governance §3.6, rule 2).
+
+*Reviewed at each charter version bump. Changes to this section are Compliance-Annex changes per Charter Governance §6.*
+
+---
+
 ## Template Revision History
 
 *This section governs the template itself, not Annex instances. Instance Annexes carry their own revision history under §8 (added during instance filing).*
@@ -996,6 +1032,7 @@ W-0002: Stribog Data and Privacy Standard §11 Privacy Audit — third-party pri
 | 1.1.0 | 4 | 2026-05-12 | MINOR bump applied during Charter Set Audit Round 6 closeout. (a) §0 Charter Pins table extended with three new rows — Stribog User Documentation Standard, Stribog Developer Documentation Standard, Stribog UI/UX Standard — each carrying an Applicability column per its own §0.2. (b) §0 Charter Pins example version values for Glossary and Charter Governance refreshed to the v1.2.0 (rev 3) and v1.3.0 (rev 5) values produced by Round 6. (c) New §2.4 *User-Facing Documentation* declaration block added: user-doc owner, audience tiers, library locations, locales, translation pipeline, doc-site hosting target, doc-to-release sync gate command, doc-accessibility command. (d) New §2.5 *Developer-Facing Documentation* declaration block added: dev-doc owner, audience tiers, README/CONTRIBUTING/bootstrap paths, onboarding budget, surface map and deprecation register paths, compatibility window, reference generators, sample-test runner, drift-gate command, reference hosting target, deprecation announcement channel, migration document path. (e) New §2.6 *UI/UX Surface* declaration block added: design owner, component library, token registry and drift-gate command, theme set, supported viewports and device classes, direction set, locale set, voice charter, accessibility floor and test platforms, visual regression toolchain, automated and manual a11y toolchains, performance budget targets and command, continuous-perf measurement source, telemetry registry, third-party scripts, reduced-motion policy, design review gate convening. Closes Round 6 finding F62 follow-up: the three new standards introduced per-project declarations that the Annex did not previously gather. No clause was weakened; projects whose surfaces predate v1.1.0 carry **N/A** in the §0 row and omit the corresponding §2.4 / §2.5 / §2.6 block. |
 | 1.2.0 | 5 | 2026-05-12 | MINOR bump applied during Charter Set Audit Round 7 closeout. §2.6 *UI/UX Surface* extended with twenty-one new sub-block declaration tables matching the [[Stribog UI/UX Standard]] v1.1.0 expansion: §2.6.1 Token Layering; §2.6.2 Color Palette; §2.6.3 Spacing and Baseline; §2.6.4 Theme System; §2.6.5 Visual Polish; §2.6.6 Information Architecture; §2.6.7 Forms Pipeline; §2.6.8 Notifications Surface; §2.6.9 Authentication and Session; §2.6.10 Data Presentation Toolchain; §2.6.11 Modality and Direct Manipulation; §2.6.12 Real-Time and Collaboration; §2.6.13 AI Rendering Pipeline; §2.6.14 Offline Strategy; §2.6.15 Onboarding Sequence; §2.6.16 Embedded and Adjacent Surfaces; §2.6.17 UI Security Configuration; §2.6.18 Native Platform Conventions; §2.6.19 Latency Budgets; §2.6.20 Easing and Motion Curves; §2.6.21 Testing Toolchain. Each sub-block is keyed to the corresponding section of the UI/UX Standard so an auditor can trace per-project declarations back to the binding clause in one hop. Closes Round 7 finding F74 (per-project declaration surface lagged the UI/UX expansion). No clause was weakened; projects whose UIs do not intersect a given sub-surface omit the corresponding sub-block. |
 | 1.2.0 | 6 | 2026-05-12 | PATCH revision applied during Charter Set Audit Round 8 closeout. §A *Reference Fill — Go Service Project* and §B *Reference Fill — Infrastructure-Only Managed Service* refreshed to the v1.2.0 canon: pins advanced to Engineering Charter 1.2 rev 7, Documentation Standard 2.1 rev 6, Operational Delivery 1.1 rev 4, User Doc 1.0 rev 1, Developer Doc 1.0 rev 1, UI/UX 1.1 rev 2, Glossary 1.3 rev 4, Charter Governance 1.3 rev 6. §A extended with worked §2.4 user-doc and §2.5 dev-doc declaration fills (CLI + MCP project), and §2.6 UI/UX declared explicitly as **N/A** with rationale (line-oriented CLI per UI/UX §0.2). §B extended with worked §2.4 user-doc (customer-portal + status-page surface), §2.5 dev-doc (internal contributor surface only), and §2.6 UI/UX fills covering status-page IA, notifications, and UI security configuration. Closes Round 8 finding F77 (Annex reference fills lagged the v1.2.0 canon). No structural change to the Annex contract; example values refreshed and worked examples of the new declaration blocks added. |
+| 1.3.0 | 1 | 2026-05-12 | MINOR bump. (a) §0 Charter Pins table extended with a two-row property block declaring Project profile (Engineering Charter §0.4) and Public release profile (Charter Governance §3.6). (b) §0.1 Project Posture compliance-tier reference updated from §0.5 to §0.6 to match Engineering Charter renumbering. (c) Charter Governance Pinned Version example updated from `1.3` to `1.4` to reflect current version. (d) New §X *Public Release Profile* section added with included/excluded set placeholders and cross-reference compliance attestation checklist. Closes profile/tier expansion prompted by external feedback. |
 | 1.2.0 | 7 | 2026-05-12 | PATCH revision applied during Charter Set Audit Round 9 closeout. New §C *Reference Fill — Browser-Only Local-First App* added covering a project shape the template did not previously demonstrate: a client-only SPA / PWA that persists Restricted-class data on the user's device with no hosted backend (encrypted local note-taker, client-side password vault, on-device medical-record viewer, offline-first PWA with on-device LLM inference). The §C fill covers (a) §0 pins with Op-Delivery N/A and Security / Privacy / User Doc / Dev Doc / UI/UX all applicable, (b) §0.1-data-storage local-persistence inventory (IndexedDB / OPFS / localStorage / sessionStorage / Cache API / sync each declared with classification posture), (c) §1.1 single-file-distributable build pipeline (Vite + bundle-check + SRI generation + Playwright smoke against the built artifact) per Eng Charter §7.4, (d) §1.3 source-vs-artifact coverage boundary per Eng Charter §5.5 single-file clause (src/ is coverage subject; dist/ is governed by release discipline), (e) §2.4 / §2.5 / §2.6 declaration fills with UI/UX fully applicable, (f) §2.6.14 offline strategy and §2.6.17 UI security as central design surfaces for this class, (g) §3 git posture with provider-neutral AI-attribution allowlist, (h) §5 Operational Posture **N/A** with rationale, (i) §7 worked waivers reflecting client-only architecture's distinct risk profile. Closes Round 9 finding F79 (no worked example for browser-only local-Restricted-data class). No structural change to the Annex contract; the template now demonstrates three reference fills (§A Go CLI + MCP, §B infra-managed-service, §C browser-only local-first) covering the three commonest Stribog project shapes. |
 
 ---
