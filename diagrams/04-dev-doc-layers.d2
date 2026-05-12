@@ -1,0 +1,49 @@
+# Dev-doc layer model — Stribog Developer Documentation Standard §3.11
+
+direction: down
+
+readme: {
+  label: "README\n(entry point)"
+  style.fill: "#DBEAFE"
+  style.stroke: "#1D4ED8"
+}
+
+contributor_family: {
+  label: "Contributor onboarding family"
+  style.fill: "#FEF3E8"
+  contributing: { label: "CONTRIBUTING" }
+  bootstrap: { label: "Dev-env bootstrap" }
+  smoke: { label: "Smoke check" }
+  arch: { label: "Architecture for contributors" }
+}
+
+integrator_family: {
+  label: "Integrator + consumer family"
+  style.fill: "#EEF7EE"
+  integration_guides: { label: "Integration guides" }
+  extension_guides: { label: "Extension guides" }
+  debug_guides: { label: "Debugging + profiling" }
+}
+
+reference_family: {
+  label: "Generated reference family"
+  style.fill: "#F3E8FD"
+  api_ref: { label: "API reference\n(OpenAPI / gRPC / GraphQL)" }
+  sdk_ref: { label: "SDK / library reference\n(per language)" }
+  schema_ref: { label: "Schema + wire formats" }
+}
+
+cross_cut: {
+  label: "Cross-cutting"
+  style.fill: "#FFE4E4"
+  adr_index: { label: "ADR index" }
+  surface_map: { label: "Public surface map" }
+  deprecation_register: { label: "Deprecation register" }
+}
+
+readme -> contributor_family
+readme -> integrator_family
+readme -> reference_family
+contributor_family -> cross_cut
+integrator_family -> cross_cut
+reference_family -> cross_cut

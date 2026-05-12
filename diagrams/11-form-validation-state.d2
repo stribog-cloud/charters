@@ -1,0 +1,60 @@
+# Form validation state machine — Stribog UI/UX Standard §9.2
+
+pristine: {
+  label: "pristine\n(initial, never touched)"
+  shape: oval
+  style.fill: "#E5E7EB"
+}
+
+editing: {
+  label: "editing\n(user is typing,\nIME composition aware)"
+  style.fill: "#DBEAFE"
+}
+
+validating: {
+  label: "validating\n(async check in flight,\ne.g. uniqueness)"
+  style.fill: "#FEF3E8"
+}
+
+valid: {
+  label: "valid\n(announced to AT\nwhere helpful)"
+  style.fill: "#DEFBE5"
+  style.stroke: "#10B981"
+}
+
+invalid: {
+  label: "invalid\n(inline error announced,\naria-describedby set)"
+  style.fill: "#FECACA"
+  style.stroke: "#EF4444"
+}
+
+submitting: {
+  label: "submitting\n(disable submit,\nidempotency key set)"
+  style.fill: "#FFF7CC"
+}
+
+submitted: {
+  label: "submitted\n(success announced)"
+  shape: oval
+  style.fill: "#10B981"
+  style.font-color: "#FFFFFF"
+}
+
+failed: {
+  label: "failed\n(server error,\npreserve user input)"
+  style.fill: "#EF4444"
+  style.font-color: "#FFFFFF"
+}
+
+pristine -> editing: "user input"
+editing -> validating: "blur / live trigger\n(after IME commit)"
+editing -> editing: "keystroke"
+validating -> valid: "checks pass"
+validating -> invalid: "checks fail"
+valid -> editing: "user resumes edit\n(dirty state)"
+invalid -> editing: "user corrects"
+valid -> submitting: "submit"
+submitting -> submitted: "server 2xx"
+submitting -> failed: "server error\n(non-validation)"
+submitting -> invalid: "server validation error"
+failed -> editing: "user retries"

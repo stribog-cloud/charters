@@ -1,0 +1,50 @@
+# User-doc lifecycle — Stribog User Documentation Standard §9
+# Status transitions for a user-facing document.
+
+direction: right
+
+draft: {
+  label: "draft\n(not user-visible)"
+  shape: rectangle
+  style.fill: "#F3F4F6"
+}
+
+in_review: {
+  label: "in-review\n(not user-visible)"
+  shape: rectangle
+  style.fill: "#FEF3E8"
+}
+
+embargoed: {
+  label: "embargoed\n(authored ahead\nof release flip)"
+  shape: rectangle
+  style.fill: "#FFF7CC"
+}
+
+published: {
+  label: "published\n(live to users)"
+  shape: rectangle
+  style.fill: "#DEFBE5"
+  style.stroke: "#10B981"
+}
+
+deprecated: {
+  label: "deprecated\n(live + banner +\nsuccessor + removal date)"
+  shape: rectangle
+  style.fill: "#FFE4E4"
+  style.stroke: "#EF4444"
+}
+
+sunset: {
+  label: "sunset\n(removed from surface,\nretained in source)"
+  shape: rectangle
+  style.fill: "#E5E7EB"
+}
+
+draft -> in_review: "author complete"
+in_review -> embargoed: "approve ahead\nof release"
+in_review -> published: "approve for\nimmediate publish"
+embargoed -> published: "release flip"
+published -> deprecated: "superseded"
+deprecated -> sunset: "removal date\nreached"
+in_review -> draft: "rework"

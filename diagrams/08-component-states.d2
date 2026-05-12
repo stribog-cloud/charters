@@ -1,0 +1,79 @@
+# Component state machine — Stribog UI/UX Standard §3.3
+
+default: {
+  label: "default\n(idle)"
+  shape: oval
+  style.fill: "#E5E7EB"
+}
+
+hover: {
+  label: "hover"
+  style.fill: "#DBEAFE"
+}
+
+focus: {
+  label: "focus / focus-visible\n(visible indicator,\nalways required)"
+  style.fill: "#FEF3E8"
+  style.stroke: "#F59E0B"
+  style.stroke-width: 3
+}
+
+active: {
+  label: "active\n(activation instant)"
+  style.fill: "#FFE4E4"
+}
+
+loading: {
+  label: "loading\n(determinate or\nindeterminate +\na11y announcement)"
+  style.fill: "#FFF7CC"
+}
+
+success: {
+  label: "success\n(announced to AT)"
+  style.fill: "#DEFBE5"
+  style.stroke: "#10B981"
+}
+
+error: {
+  label: "error\n(message per §6.2)"
+  style.fill: "#FECACA"
+  style.stroke: "#EF4444"
+}
+
+disabled: {
+  label: "disabled\n(non-interactive +\nAT explanation)"
+  style.fill: "#F3F4F6"
+}
+
+read_only: {
+  label: "read-only\n(value visible,\nnot editable)"
+  style.fill: "#F3F4F6"
+}
+
+empty: {
+  label: "empty\n(microcopy per §6.4)"
+  style.fill: "#F3F4F6"
+}
+
+partial: {
+  label: "partial\n(loaded + pending\nboundary visible)"
+  style.fill: "#FFF7CC"
+}
+
+default -> hover: "pointer enter"
+hover -> default: "pointer leave"
+default -> focus: "tab in"
+focus -> default: "tab out"
+focus -> active: "key down"
+hover -> active: "pointer down"
+active -> loading: "async work begins"
+loading -> success: "work succeeds"
+loading -> error: "work fails"
+success -> default
+error -> default: "user dismisses"
+default -> disabled: "becomes non-interactive"
+disabled -> default: "becomes interactive"
+default -> read_only
+default -> empty: "no data"
+empty -> partial: "data arrives"
+partial -> default: "fully loaded"

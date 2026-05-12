@@ -1,0 +1,40 @@
+# UI test pyramid — Stribog UI/UX Standard §9.4
+
+direction: up
+
+unit: {
+  label: "Unit\n(component render,\nprop handling,\ndeterministic output)\n— many, fast"
+  style.fill: "#DBEAFE"
+}
+
+integration: {
+  label: "Integration\n(composed behavior:\nforms, lists, flows)"
+  style.fill: "#BFDBFE"
+}
+
+visual_a11y: {
+  label: "Visual regression  +  Automated a11y\n(every component × every state ×\nevery theme × every direction;\naxe / equivalent on snapshots and journeys)\n— release-blocking"
+  style.fill: "#FEF3E8"
+  style.stroke: "#F59E0B"
+}
+
+e2e: {
+  label: "End-to-end\n(small, deliberate\njourney set at\nsupported viewports)\n— few, slow"
+  style.fill: "#FFE4E4"
+  style.stroke: "#EF4444"
+}
+
+manual_a11y: {
+  label: "Manual a11y pass\n(at least one screen reader,\nrepresentative tasks,\nevery release)\n— cross-cuts every layer"
+  style.fill: "#F3E8FD"
+  style.stroke: "#8B5CF6"
+  style.stroke-width: 3
+}
+
+unit -> integration
+integration -> visual_a11y
+visual_a11y -> e2e
+manual_a11y -> unit: "informs"
+manual_a11y -> integration: "informs"
+manual_a11y -> visual_a11y: "informs"
+manual_a11y -> e2e: "informs"

@@ -1,0 +1,73 @@
+# Stribog Charters — exclusions for public distribution promotion
+#
+# This file is the canonical exclusion list applied when promoting this
+# directory to the public distribution repository. Patterns here are NOT
+# part of the published charter set.
+
+# Audit-closeout documents — internal operational artifacts
+Charter-Set-Audit-Round-*.md
+
+# Confidential / draft / internal variants
+Stribog-Confidential-*.md
+*-CONFIDENTIAL.md
+*-DRAFT.md
+*-PRIVATE.md
+*-INTERNAL.md
+.confidential/
+drafts/
+private/
+
+# Editor / vault internal state
+.obsidian/
+.obsidian-templater-cache/
+.trash/
+.stfolder/
+.stversions/
+.stignore
+
+# Local issue tracker state
+.beads/
+
+# Coding-agent worktrees and state
+.claude/
+.codex/
+.opencode/
+.cursor/
+.aider/
+.copilot/
+.claude-worktrees/
+worktrees/
+
+# OS / editor junk
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+.#*
+\#*\#
+*.bak
+*.orig
+*.tmp
+
+# Build / tool caches
+__pycache__/
+*.pyc
+.cache/
+node_modules/
+.venv/
+venv/
+
+# Credentials / env files — never commit secrets
+.env
+.env.*
+*.pem
+*.key
+id_rsa
+id_ed25519
+secrets.yaml
+secrets.yml
+credentials.json

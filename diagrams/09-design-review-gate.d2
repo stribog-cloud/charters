@@ -1,0 +1,58 @@
+# Design review gate flow — Stribog UI/UX Standard §8.4
+
+direction: right
+
+trigger: {
+  label: "Change triggers §8.1\n• new screen / flow\n• new or changed token\n• new or changed component\n• high-traffic microcopy\n• public marketing surface"
+  shape: oval
+  style.fill: "#EEF2FF"
+}
+
+design_review: {
+  label: "Design review gate"
+  style.fill: "#FEF3E8"
+  tokens_check: { label: "Tokens (§2)" }
+  states_check: { label: "Component states (§3)" }
+  a11y_check: { label: "Accessibility (§4)\n+ named test result" }
+  copy_check: { label: "Microcopy (§6)" }
+  i18n_check: { label: "Internationalization (§7)" }
+  motion_check: { label: "Motion (§12)" }
+  perf_check: { label: "Performance budget impact (§10)" }
+}
+
+signoff: {
+  label: "Sign-off\n(named design owner)"
+  shape: diamond
+  style.fill: "#FFF7CC"
+}
+
+eng_gates: {
+  label: "Engineering gates\n(visual regression,\nautomated a11y,\nperformance budget)"
+  style.fill: "#E8F4FD"
+}
+
+release_gate: {
+  label: "Release gate\n(blocking)"
+  shape: diamond
+  style.fill: "#FFE4E4"
+  style.stroke: "#EF4444"
+}
+
+ship: {
+  label: "Released"
+  shape: oval
+  style.fill: "#DEFBE5"
+  style.stroke: "#10B981"
+}
+
+trigger -> design_review
+design_review -> signoff
+signoff -> design_review: "rework" {
+  style.stroke-dash: 4
+}
+signoff -> eng_gates: "signed off"
+eng_gates -> release_gate
+release_gate -> ship: "all gates green"
+release_gate -> eng_gates: "any gate red" {
+  style.stroke-dash: 4
+}

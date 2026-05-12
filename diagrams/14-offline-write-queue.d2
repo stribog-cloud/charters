@@ -1,0 +1,80 @@
+# Offline write queue + sync — Stribog UI/UX Standard §17
+
+direction: right
+
+online: {
+  label: "online\n(synced state)"
+  shape: oval
+  style.fill: "#DEFBE5"
+  style.stroke: "#10B981"
+}
+
+mutation: {
+  label: "user mutates\n(write submitted)"
+  style.fill: "#DBEAFE"
+}
+
+connectivity: {
+  label: "Online?"
+  shape: diamond
+  style.fill: "#FEF3E8"
+}
+
+direct: {
+  label: "send to server\n(with idempotency key)"
+  style.fill: "#EEF7EE"
+}
+
+queue: {
+  label: "write queue\n(local persistence,\nidempotency key per item,\nuser-visible pending state)"
+  shape: cylinder
+  style.fill: "#FFF7CC"
+}
+
+offline_banner: {
+  label: "offline banner\n(§10.1 banner +\nlive-region announcement)"
+  style.fill: "#FECACA"
+}
+
+reconnect: {
+  label: "connectivity\nrestored"
+  shape: oval
+  style.fill: "#FEF3E8"
+}
+
+replay: {
+  label: "replay queue\n(in order, with\nidempotency keys)"
+  style.fill: "#E8F4FD"
+}
+
+conflict_check: {
+  label: "conflict?"
+  shape: diamond
+  style.fill: "#FEF3E8"
+}
+
+conflict_ui: {
+  label: "conflict-resolution UI\n(§14.4 — both versions,\nuser chooses)"
+  style.fill: "#FECACA"
+  style.stroke: "#EF4444"
+}
+
+synced: {
+  label: "synced\n(state visible)"
+  shape: oval
+  style.fill: "#DEFBE5"
+  style.stroke: "#10B981"
+}
+
+online -> mutation
+mutation -> connectivity
+connectivity -> direct: "yes"
+connectivity -> queue: "no"
+queue -> offline_banner: "user is informed"
+direct -> synced
+offline_banner -> reconnect: "connection returns"
+reconnect -> replay
+replay -> conflict_check: "per item"
+conflict_check -> synced: "no conflict"
+conflict_check -> conflict_ui: "conflict detected"
+conflict_ui -> synced: "user resolves"

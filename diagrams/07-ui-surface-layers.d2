@@ -1,0 +1,40 @@
+# UI surface layer model — Stribog UI/UX Standard §2.4
+# Each layer depends only on the layer below.
+
+direction: up
+
+tokens: {
+  label: "Design tokens\n(color, type, spacing, radius,\nelevation, motion, breakpoint, z-index)"
+  style.fill: "#1F2937"
+  style.font-color: "#F9FAFB"
+  style.stroke: "#111827"
+}
+
+primitives: {
+  label: "Primitives\n(button, input, surface, text, icon)"
+  style.fill: "#3B82F6"
+  style.font-color: "#FFFFFF"
+}
+
+components: {
+  label: "Components\n(form field, card, list row,\ndialog, toast, menu)"
+  style.fill: "#10B981"
+  style.font-color: "#FFFFFF"
+}
+
+patterns: {
+  label: "Patterns\n(detail view, search results,\nempty state, error state, wizard)"
+  style.fill: "#F59E0B"
+  style.font-color: "#FFFFFF"
+}
+
+screens: {
+  label: "Screens\n(routes, top-level views,\nproduct surfaces)"
+  style.fill: "#EF4444"
+  style.font-color: "#FFFFFF"
+}
+
+screens -> patterns: "composes"
+patterns -> components: "composes"
+components -> primitives: "composes"
+primitives -> tokens: "consumes by name"

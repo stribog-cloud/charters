@@ -1,0 +1,56 @@
+# Auth and session timeline — Stribog UI/UX Standard §11.3
+
+direction: right
+
+signed_in: {
+  label: "signed-in\n(active session)"
+  shape: oval
+  style.fill: "#DEFBE5"
+  style.stroke: "#10B981"
+}
+
+active: {
+  label: "active\n(user interacting)"
+  style.fill: "#DBEAFE"
+}
+
+idle_soon: {
+  label: "idle-soon\n(approaching warning\nthreshold, silent)"
+  style.fill: "#FEF3E8"
+}
+
+idle_warning: {
+  label: "idle-warning\n(countdown visible,\nannounced to AT,\nextend affordance)"
+  style.fill: "#FFF7CC"
+  style.stroke: "#F59E0B"
+}
+
+expired: {
+  label: "expired\n(session terminated\nclient + server)"
+  style.fill: "#FECACA"
+  style.stroke: "#EF4444"
+}
+
+reauth: {
+  label: "re-authentication\n(preserves pending work,\nrecovers dirty form state)"
+  style.fill: "#E8F4FD"
+}
+
+forced_logout: {
+  label: "forced logout\n(server revoke,\nsecurity event,\nversion change)"
+  style.fill: "#EF4444"
+  style.font-color: "#FFFFFF"
+}
+
+signed_in -> active: "interaction"
+active -> idle_soon: "inactivity tick"
+idle_soon -> active: "interaction resumes"
+idle_soon -> idle_warning: "warning threshold reached"
+idle_warning -> active: "user extends\n(one-action affordance)"
+idle_warning -> expired: "countdown elapses"
+expired -> reauth: "user attempts action"
+signed_in -> forced_logout: "server-side revoke" {
+  style.stroke-dash: 4
+}
+forced_logout -> reauth: "redirect with continuation"
+reauth -> signed_in: "credentials accepted"

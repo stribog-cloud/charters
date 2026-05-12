@@ -1,0 +1,38 @@
+# Deprecation timeline — Stribog Developer Documentation Standard §6.3
+
+direction: right
+
+stable: {
+  label: "stable\n(public surface honored)"
+  style.fill: "#DEFBE5"
+  style.stroke: "#10B981"
+}
+
+announce: {
+  label: "T₀\nAnnouncement\n• notice authored\n• release note entry\n• runtime signal armed"
+  shape: oval
+  style.fill: "#FEF3E8"
+  style.stroke: "#F59E0B"
+}
+
+coexist: {
+  label: "Co-existence window\n(declared in annex)\n• old + new both work\n• runtime warning at every use\n• migration guide live"
+  style.fill: "#FFF7CC"
+}
+
+remove: {
+  label: "Tᵣ\nRemoval\n• element gone from source\n• map entry → removed\n• major version bump"
+  shape: oval
+  style.fill: "#FFE4E4"
+  style.stroke: "#EF4444"
+}
+
+archived: {
+  label: "Archived in\nsurface map\n(traceability only)"
+  style.fill: "#E5E7EB"
+}
+
+stable -> announce: "deprecation decision"
+announce -> coexist
+coexist -> remove: "window elapsed"
+remove -> archived

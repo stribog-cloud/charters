@@ -1,0 +1,60 @@
+# Notification priority + dedup flow — Stribog UI/UX Standard §10.2
+
+direction: right
+
+source: {
+  label: "Notification source\n(client event, server push,\nbackground task)"
+  shape: oval
+  style.fill: "#EEF2FF"
+}
+
+normalize: {
+  label: "Normalize\n• type\n• priority\n• content hash\n• source"
+  style.fill: "#E8F4FD"
+}
+
+dedup: {
+  label: "Dedup\n(against active +\nrecently-shown set)"
+  shape: diamond
+  style.fill: "#FEF3E8"
+}
+
+batch: {
+  label: "Batch by source\n(N similar events\n→ 1 batched notice)"
+  style.fill: "#FEF3E8"
+}
+
+prioritize: {
+  label: "Prioritize\n(critical → error →\nwarning → success → info)"
+  style.fill: "#FFF7CC"
+}
+
+route: {
+  label: "Route by §10.1 taxonomy"
+  shape: diamond
+  style.fill: "#F3E8FD"
+}
+
+toast: { label: "Toast\n(transient,\naria-live=polite)" ; style.fill: "#DBEAFE" }
+banner: { label: "Banner\n(surface-wide,\nlandmark scoped)" ; style.fill: "#FEF3E8" }
+inline: { label: "Inline\n(adjacent to control)" ; style.fill: "#EEF7EE" }
+modal: { label: "Modal alert\n(role=alertdialog)" ; style.fill: "#FECACA" }
+system: { label: "OS notification\n(post-permission)" ; style.fill: "#E5E7EB" }
+center: { label: "Notification center\n(history + read state)" ; style.fill: "#F3F4F6" }
+
+source -> normalize
+normalize -> dedup
+dedup -> source: "duplicate → drop" {
+  style.stroke-dash: 4
+}
+dedup -> batch: "unique"
+batch -> prioritize
+prioritize -> route
+route -> toast: "info / success / transient"
+route -> banner: "warning / surface condition"
+route -> inline: "context-local feedback"
+route -> modal: "critical / blocking"
+route -> system: "out-of-app"
+toast -> center: "after dismiss"
+banner -> center: "after resolve"
+modal -> center: "after acknowledge"

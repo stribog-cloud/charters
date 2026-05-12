@@ -1,0 +1,80 @@
+# Modality decision tree — Stribog UI/UX Standard §13.1
+
+task: {
+  label: "User task /\ninformation need"
+  shape: oval
+  style.fill: "#EEF2FF"
+}
+
+read_only: {
+  label: "Read-only\nor light interaction?"
+  shape: diamond
+  style.fill: "#FEF3E8"
+}
+
+inline: {
+  label: "Inline disclosure\n(expand / collapse;\n§13.5)"
+  style.fill: "#DBEAFE"
+}
+
+context_check: {
+  label: "Needs to stay\nin context?"
+  shape: diamond
+  style.fill: "#FEF3E8"
+}
+
+popover: {
+  label: "Popover or tooltip\n(§13.4 —\nno destructive actions)"
+  style.fill: "#EEF7EE"
+}
+
+choose_confirm: {
+  label: "Choose-and-confirm,\ndestructive, or\nhigh-stakes single decision?"
+  shape: diamond
+  style.fill: "#FEF3E8"
+}
+
+dialog: {
+  label: "Dialog\n(§13.2 — focus trap,\nEscape dismiss,\nfocus restoration)"
+  style.fill: "#FFF7CC"
+}
+
+multistep: {
+  label: "Multi-step or\nlong-form task?"
+  shape: diamond
+  style.fill: "#FEF3E8"
+}
+
+sheet: {
+  label: "Sheet or drawer\n(§13.3 — edge slide,\nfocus trap, close affordance)"
+  style.fill: "#F3E8FD"
+}
+
+permanent: {
+  label: "Permanent secondary\nsurface (filters,\nnav, settings)?"
+  shape: diamond
+  style.fill: "#FEF3E8"
+}
+
+drawer: {
+  label: "Sidebar / drawer\n(non-modal —\nfocus retained on main)"
+  style.fill: "#F3E8FD"
+}
+
+full_page: {
+  label: "Full-page takeover\n(§13.1 — for tasks\nthat warrant own route)"
+  style.fill: "#FECACA"
+}
+
+task -> read_only
+read_only -> inline: "yes"
+read_only -> context_check: "no"
+context_check -> popover: "yes — light"
+context_check -> choose_confirm: "no — task"
+choose_confirm -> dialog: "yes"
+choose_confirm -> multistep: "no"
+multistep -> sheet: "moderate"
+multistep -> permanent: "no"
+multistep -> full_page: "long-form"
+permanent -> drawer: "yes"
+permanent -> full_page: "no"

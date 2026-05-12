@@ -1,0 +1,55 @@
+# API reference pipeline — Stribog Developer Documentation Standard §4.4
+
+direction: right
+
+source: {
+  label: "Source of truth\n(annotated source,\n.proto, schema)"
+  shape: cylinder
+  style.fill: "#E8F4FD"
+}
+
+generator: {
+  label: "Generator\n(OpenAPI / godoc /\ntypedoc / rustdoc / sphinx)"
+  shape: hexagon
+  style.fill: "#FEF3E8"
+}
+
+artifact: {
+  label: "Generated artifact\n(canonical form)"
+  style.fill: "#F3E8FD"
+}
+
+surface_map: {
+  label: "Public surface map"
+  shape: cylinder
+  style.fill: "#FFF7CC"
+}
+
+drift_gate: {
+  label: "Drift gate\n(CI release-blocking)"
+  shape: diamond
+  style.fill: "#FFE4E4"
+  style.stroke: "#EF4444"
+}
+
+hosted: {
+  label: "Hosted reference\n(versioned, navigable)"
+  shape: cloud
+  style.fill: "#DEFBE5"
+  style.stroke: "#10B981"
+}
+
+consumer: {
+  label: "Integrator / SDK consumer"
+  shape: person
+}
+
+source -> generator
+generator -> artifact
+artifact -> drift_gate
+surface_map -> drift_gate
+drift_gate -> hosted: "gate green"
+drift_gate -> source: "gate red\n(fix surface or map)" {
+  style.stroke-dash: 4
+}
+hosted -> consumer

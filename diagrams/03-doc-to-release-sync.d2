@@ -1,0 +1,63 @@
+# Doc-to-release sync timeline — Stribog User Documentation Standard §11
+# Documentation lands on or before release.
+
+direction: right
+
+behavior_change: {
+  label: "Behavior change\nproposed"
+  shape: oval
+  style.fill: "#EEF2FF"
+}
+
+code_pr: {
+  label: "Code PR\n(implementation)"
+  style.fill: "#E8F4FD"
+}
+
+doc_pr: {
+  label: "Doc PR\n(user-doc + release note)"
+  style.fill: "#FEF3E8"
+}
+
+code_review: {
+  label: "Engineering\nreview"
+}
+
+doc_review: {
+  label: "Doc review\n+ evidence regen"
+}
+
+code_freeze: {
+  label: "Code freeze"
+  shape: oval
+  style.fill: "#FFF7CC"
+}
+
+doc_gate: {
+  label: "Doc gate\n(release-blocking)"
+  shape: diamond
+  style.fill: "#FFE4E4"
+  style.stroke: "#EF4444"
+}
+
+release_flip: {
+  label: "Release flip\n(embargoed → published)"
+  shape: oval
+  style.fill: "#DEFBE5"
+  style.stroke: "#10B981"
+}
+
+post_release: {
+  label: "Post-release\n(monitor signals)"
+}
+
+behavior_change -> code_pr
+behavior_change -> doc_pr
+code_pr -> code_review
+doc_pr -> doc_review
+code_review -> code_freeze
+doc_review -> code_freeze
+code_freeze -> doc_gate
+doc_gate -> release_flip: "gate green"
+doc_gate -> doc_review: "gate red"
+release_flip -> post_release
